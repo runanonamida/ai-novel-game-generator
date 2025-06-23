@@ -1,0 +1,10 @@
+# キャラクター画像配置場所
+
+以下のファイルを配置してください：
+- protagonist_male.png
+- protagonist_female.png  
+- heroine.png
+- hero.png
+- friend.png
+- rival.png
+- senior.png

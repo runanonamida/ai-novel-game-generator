@@ -1,0 +1,342 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #1a1a2e;
+  color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ノベルゲーム用のスタイル */
+.novel-game-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background: #000;
+}
+
+.game-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+.characters-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80%;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  padding: 0 50px;
+}
+
+.character {
+  max-height: 100%;
+  max-width: 300px;
+  object-fit: contain;
+  transition: all 0.5s ease;
+  filter: brightness(0.7);
+}
+
+.character.speaking {
+  filter: brightness(1);
+  transform: scale(1.05);
+}
+
+.character.left {
+  align-self: flex-end;
+  margin-right: auto;
+}
+
+.character.center {
+  align-self: flex-end;
+}
+
+.character.right {
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.dialogue-box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(30,30,60,0.9) 100%);
+  border-top: 3px solid #4a90e2;
+  padding: 25px 40px;
+  z-index: 3;
+  min-height: 200px;
+  backdrop-filter: blur(10px);
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.character-name {
+  color: #4a90e2;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.dialogue-text {
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  min-height: 60px;
+}
+
+.game-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.game-controls > div:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.next-button {
+  background: linear-gradient(45deg, #4a90e2, #357abd);
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+  min-height: 44px;
+  min-width: 80px;
+  touch-action: manipulation;
+}
+
+.next-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+}
+
+.next-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.choices-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.choice-button {
+  background: rgba(74, 144, 226, 0.8);
+  color: white;
+  border: 2px solid #4a90e2;
+  padding: 15px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.choice-button:hover {
+  background: #4a90e2;
+  transform: translateX(10px);
+}
+
+/* ゲーム設定画面 */
+.game-setup {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+.setup-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  margin: 0 auto;
+  max-width: 800px;
+  color: #333;
+}
+
+.setup-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.setup-header h1 {
+  color: #4a90e2;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.setup-header p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+  font-size: 16px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #e1e5e9;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  background: white;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.generate-button {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 18px 40px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  width: 100%;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.generate-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+.generate-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.loading-container {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.loading-spinner {
+  border: 4px solid rgba(74, 144, 226, 0.3);
+  border-top: 4px solid #4a90e2;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+.loading-text {
+  font-size: 18px;
+  color: #4a90e2;
+  font-weight: bold;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .characters-layer {
+    padding: 0 20px;
+  }
+  
+  .character {
+    max-width: 200px;
+  }
+  
+  .dialogue-box {
+    padding: 20px;
+    min-height: 180px;
+    max-height: 60vh;
+  }
+  
+  .dialogue-text {
+    font-size: 14px;
+  }
+  
+  .next-button {
+    font-size: 12px;
+    padding: 12px 20px;
+    min-width: 70px;
+  }
+  
+  .game-controls > div:last-child {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .setup-card {
+    margin: 20px;
+    padding: 30px 20px;
+  }
+  
+  .novel-game-container {
+    height: 100vh;
+    position: relative;
+  }
+}
+
+@media (max-height: 600px) {
+  .dialogue-box {
+    max-height: 70vh;
+    min-height: 120px;
+  }
+  
+  .next-button {
+    padding: 10px 15px;
+    font-size: 11px;
+  }
+}
